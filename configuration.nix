@@ -87,6 +87,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
+    gns3-server
     greetd.tuigreet
     greetd.greetd
     neovim
@@ -119,8 +120,6 @@
     enable = true;
     settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   };
-
-  services.mullvad-vpn.enable = true;
 
   services.pipewire = {
     enable = true;
