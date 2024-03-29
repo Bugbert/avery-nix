@@ -62,11 +62,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  users.groups.ubridge.gid = 1005;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.avery = {
     isNormalUser = true;
     description = "Avery";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "ubridge" "wheel" ];
     packages = with pkgs; [
       alacritty
       bemenu
@@ -86,13 +88,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    dynamips
     git
     gns3-server
     greetd.tuigreet
     greetd.greetd
+    inetutils
     neovim
+    ubridge
     unzip
     vim
+    vpcs
   ];
 
   fonts.packages = with pkgs; [
@@ -102,6 +108,14 @@
 
   programs.river.enable = true;
   xdg.portal.wlr.enable = true;
+
+  security.wrappers.ubridge = {
+    source = "${pkgs.ubridge}/bin/ubridge";
+    capabilities = "cap_net_admin,cap_net_raw=ep";
+    owner = "root";
+    group = "ubridge";
+    permissions = "u+rx,g+x";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -118,7 +132,7 @@
 
   services.greetd = {
     enable = true;
-    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c river";
   };
 
   services.pipewire = {
@@ -136,6 +150,8 @@
     layout = "us";
     xkbVariant = "";
   };
+
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
