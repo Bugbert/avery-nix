@@ -68,10 +68,11 @@
   users.users.avery = {
     isNormalUser = true;
     description = "Avery";
-    extraGroups = [ "networkmanager" "ubridge" "wheel" ];
+    extraGroups = [ "networkmanager" "ubridge" "wheel" "wireshark" ];
     packages = with pkgs; [
       alacritty
       bemenu
+      btop
       firefox
       gns3-gui
       godot_4
@@ -102,6 +103,7 @@
     unzip
     vim
     vpcs
+    wireshark
   ];
 
   fonts.packages = with pkgs; [
