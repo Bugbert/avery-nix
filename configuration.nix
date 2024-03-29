@@ -71,7 +71,7 @@
       alacritty
       bemenu
       firefox
-      mullvad-vpn
+      gns3-gui
       musescore
       prismlauncher
       swww
