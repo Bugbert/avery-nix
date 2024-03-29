@@ -96,6 +96,7 @@
     greetd.greetd
     inetutils
     neovim
+    qemu
     ubridge
     unzip
     vim
