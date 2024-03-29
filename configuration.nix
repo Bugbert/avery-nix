@@ -89,6 +89,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bat
     dynamips
     git
     gns3-server
@@ -110,6 +111,8 @@
 
   programs.river.enable = true;
   xdg.portal.wlr.enable = true;
+
+  programs.wireshark.enable = true;
 
   security.wrappers.ubridge = {
     source = "${pkgs.ubridge}/bin/ubridge";
