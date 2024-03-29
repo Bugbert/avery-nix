@@ -74,6 +74,7 @@
       bemenu
       firefox
       gns3-gui
+      godot_4
       musescore
       prismlauncher
       swww
