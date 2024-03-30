@@ -73,13 +73,17 @@
       alacritty
       bemenu
       btop
+      #ciscoPacketTracer8	wait until 8.2.2
       firefox
       gns3-gui
       godot_4
+      libreoffice
       musescore
+      #obsidian			broken for now
       prismlauncher
       swww
       waybar
+      wl-clipboard
       zoom-us
     ];
   };
@@ -109,6 +113,7 @@
   fonts.packages = with pkgs; [
     font-awesome
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    times-newer-roman
   ];
 
   programs.river.enable = true;
