@@ -77,11 +77,13 @@
       firefox
       gns3-gui
       godot_4
+      krita
       libreoffice
       musescore
       #obsidian			broken for now
       prismlauncher
       swww
+      thunderbird
       waybar
       wl-clipboard
       zoom-us
@@ -101,6 +103,7 @@
     greetd.tuigreet
     greetd.greetd
     inetutils
+    languagetool
     neovim
     qemu
     ubridge
@@ -116,10 +119,12 @@
     times-newer-roman
   ];
 
-  programs.river.enable = true;
   xdg.portal.wlr.enable = true;
 
-  programs.wireshark.enable = true;
+  programs = {
+    river.enable = true;
+    wireshark.enable = true;
+  };
 
   security.wrappers.ubridge = {
     source = "${pkgs.ubridge}/bin/ubridge";
@@ -146,6 +151,8 @@
     enable = true;
     settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c river";
   };
+
+  services.languagetool.enable = true;
 
   services.pipewire = {
     enable = true;
