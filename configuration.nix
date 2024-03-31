@@ -126,48 +126,45 @@
     wireshark.enable = true;
   };
 
-  security.wrappers.ubridge = {
-    source = "${pkgs.ubridge}/bin/ubridge";
-    capabilities = "cap_net_admin,cap_net_raw=ep";
-    owner = "root";
-    group = "ubridge";
-    permissions = "u+rx,g+x";
+  security = {
+    wrappers.ubridge = {
+      source = "${pkgs.ubridge}/bin/ubridge";
+      capabilities = "cap_net_admin,cap_net_raw=ep";
+      owner = "root";
+      group = "ubridge";
+      permissions = "u+rx,g+x";
+    };
+    rtkit.enable = true;
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  services = {
+    #borgbackup.jobs.avery-home = {
+    #  paths = "/home/avery";
+    #  encryption.mode = "none";
+    #  repo = "/var/backups/avery-home";
+    #  compression = "auto,zstd";
+    #  startAt = "daily";
+    #};
 
-  # List services that you want to enable:
+    greetd = {
+      enable = true;
+      settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c river";
+    };
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+    languagetool.enable = true;
 
-  services.greetd = {
-    enable = true;
-    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c river";
-  };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
 
-  services.languagetool.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  security.rtkit.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xserver = {
+      layout = "us";
+      xkbVariant = "";
+    };
   };
 
   virtualisation.docker.enable = true;
