@@ -71,18 +71,22 @@
     extraGroups = [ "networkmanager" "ubridge" "wheel" "wireshark" ];
     packages = with pkgs; [
       alacritty
+      asunder
       bemenu
       btop
-      #ciscoPacketTracer8	wait until 8.2.2
+      #ciscopackettracer8	wait until 8.2.2
       firefox
       gns3-gui
       godot_4
+      grim
       krita
       libreoffice
       musescore
       #obsidian			broken for now
       prismlauncher
+      slurp
       swww
+      tenacity
       thunderbird
       waybar
       wl-clipboard
@@ -123,6 +127,7 @@
 
   programs = {
     river.enable = true;
+    steam.enable = true;
     wireshark.enable = true;
   };
 
