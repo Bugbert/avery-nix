@@ -71,8 +71,10 @@
     extraGroups = [ "networkmanager" "ubridge" "wheel" "wireshark" ];
     packages = with pkgs; [
       alacritty
+      aseprite
       asunder
       bemenu
+      blender
       btop
       #ciscopackettracer8	wait until 8.2.2
       firefox
@@ -81,7 +83,9 @@
       grim
       krita
       libreoffice
+      mpv
       musescore
+      nanotts
       #obsidian			broken for now
       prismlauncher
       slurp
@@ -143,6 +147,12 @@
   };
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
+
     #borgbackup.jobs.avery-home = {
     #  paths = "/home/avery";
     #  encryption.mode = "none";
@@ -164,6 +174,11 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+    };
+
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ gutenprint gutenprintBin ];
     };
 
     xserver = {
