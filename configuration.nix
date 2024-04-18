@@ -76,7 +76,7 @@
       bemenu
       blender
       btop
-      #ciscopackettracer8	wait until 8.2.2
+      ciscoPacketTracer8
       firefox
       gns3-gui
       godot_4
@@ -149,7 +149,7 @@
   services = {
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
     };
 
@@ -181,9 +181,9 @@
       drivers = with pkgs; [ gutenprint gutenprintBin ];
     };
 
-    xserver = {
+    xserver.xkb = {
       layout = "us";
-      xkbVariant = "";
+      variant = "";
     };
   };
 
