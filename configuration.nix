@@ -68,7 +68,7 @@
   users.users.avery = {
     isNormalUser = true;
     description = "Avery";
-    extraGroups = [ "networkmanager" "ubridge" "wheel" "wireshark" ];
+    extraGroups = [ "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
     packages = with pkgs; [
       alacritty
       aseprite
@@ -130,6 +130,7 @@
   xdg.portal.wlr.enable = true;
 
   programs = {
+    light.enable = true;
     river.enable = true;
     steam.enable = true;
     wireshark.enable = true;
