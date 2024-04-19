@@ -114,11 +114,13 @@
     languagetool
     neovim
     qemu
+    swayidle
     ubridge
     unzip
     vim
     vpcs
     wireshark
+    wlr-randr
   ];
 
   fonts.packages = with pkgs; [
@@ -130,7 +132,6 @@
   xdg.portal.wlr.enable = true;
 
   programs = {
-    light.enable = true;
     river.enable = true;
     steam.enable = true;
     wireshark.enable = true;
