@@ -68,7 +68,7 @@
   users.users.avery = {
     isNormalUser = true;
     description = "Avery";
-    extraGroups = [ "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
+    extraGroups = [ "docker" "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
     packages = with pkgs; [
       alacritty
       aseprite
@@ -86,8 +86,10 @@
       mpv
       musescore
       nanotts
-      #obsidian			broken for now
+      obsidian
+      octave
       prismlauncher
+      qbittorrent
       slurp
       swww
       tenacity
@@ -113,10 +115,13 @@
     inetutils
     languagetool
     neovim
+    pass
     qemu
     swayidle
     ubridge
+    uftpd
     unzip
+    uucp
     vim
     vpcs
     wireshark
@@ -193,9 +198,12 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ 69 ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.interfaces."enp10s0" = {
+    allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
+    allowedUDPPortRanges = [ { from = 0; to = 65535; } ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
