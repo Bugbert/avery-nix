@@ -83,11 +83,12 @@
       grim
       krita
       libreoffice
+      logseq
       mpv
       musescore
       nanotts
       obsidian
-      octave
+      octaveFull
       prismlauncher
       qbittorrent
       slurp
@@ -96,6 +97,7 @@
       thunderbird
       waybar
       wl-clipboard
+      zettlr
       zoom-us
     ];
   };
@@ -126,6 +128,7 @@
     vpcs
     wireshark
     wlr-randr
+    zig_0_12
   ];
 
   fonts.packages = with pkgs; [
