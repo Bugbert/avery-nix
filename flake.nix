@@ -17,7 +17,7 @@
 	  {
 	    home-manager.useGlobalPkgs = true;
 	    home-manager.useUserPackages = true;
-	    home-manager.users.avery = import ./avery/home.nix;
+	    home-manager.users.avery = import ./home.nix;
 	  }
 	];
       };
