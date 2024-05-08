@@ -69,37 +69,6 @@
     isNormalUser = true;
     description = "Avery";
     extraGroups = [ "docker" "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
-    packages = with pkgs; [
-      alacritty
-      aseprite
-      asunder
-      bemenu
-      blender
-      btop
-      ciscoPacketTracer8
-      firefox
-      gns3-gui
-      godot_4
-      grim
-      krita
-      libreoffice
-      logseq
-      mpv
-      musescore
-      nanotts
-      obsidian
-      octaveFull
-      prismlauncher
-      qbittorrent
-      slurp
-      swww
-      tenacity
-      thunderbird
-      waybar
-      wl-clipboard
-      zettlr
-      zoom-us
-    ];
   };
 
   # Allow unfree packages
