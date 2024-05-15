@@ -4,6 +4,7 @@
 
 { config, pkgs, ... }:
 
+let sshPorts = [ 51658 ]; in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -26,23 +27,23 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  #networking = {
-  #  defaultGateway6 = {
-  #    address = "fe80::1";
-  #    interface = "eno1";
-  #  };
-  #  interfaces.eno1 = {
-  #    ipv4.addresses = [{
-  #      address = "192.168.1.4";
-#	prefixLength = 24;
-#      }];
+  networking = {
+    defaultGateway = {
+      address = "192.168.1.1";
+      interface = "eno1";
+    };
+    interfaces.eno1 = {
+      ipv4.addresses = [{
+        address = "192.168.1.4";
+	prefixLength = 24;
+      }];
 #      ipv6.addresses = [{
 #        address = "fe80::4";
 #        prefixLength = 64;
 #      }];
-#    };
-#  };
-  networking.networkmanager.enable = true;
+    };
+    nameservers = [ "192.168.1.1" ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -147,6 +148,15 @@
 
     languagetool.enable = true;
 
+    openssh = {
+      enable = true;
+      ports = sshPorts;
+      settings = {
+        AllowUsers = [ "avery" ];
+	PasswordAuthentication = false;
+      };
+    };
+
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -169,9 +179,8 @@
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = sshPorts;
   # networking.firewall.allowedUDPPorts = [ 69 ];
-  # Or disable the firewall altogether.
   networking.firewall.interfaces."enp10s0" = {
     allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
     allowedUDPPortRanges = [ { from = 0; to = 65535; } ];

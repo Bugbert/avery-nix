@@ -33,6 +33,7 @@
     tenacity
     thunderbird
     waybar
+    wayvnc
     wl-clipboard
     zettlr
     zoom-us
