@@ -12,8 +12,10 @@
     asunder
     bemenu
     blender
+    bluetuith
     btop
     ciscoPacketTracer8
+    dolphin-emu
     firefox
     gns3-gui
     godot_4
@@ -34,6 +36,7 @@
     thunderbird
     waybar
     wayvnc
+    wev
     wl-clipboard
     zettlr
     zoom-us

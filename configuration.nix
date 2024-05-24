@@ -19,6 +19,11 @@ let sshPorts = [ 51658 ]; in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   networking.hostName = "avery-nix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -32,6 +37,7 @@ let sshPorts = [ 51658 ]; in
       address = "192.168.1.1";
       interface = "eno1";
     };
+    dhcpcd.enable = false;
     interfaces.eno1 = {
       ipv4.addresses = [{
         address = "192.168.1.4";
@@ -69,7 +75,7 @@ let sshPorts = [ 51658 ]; in
   users.users.avery = {
     isNormalUser = true;
     description = "Avery";
-    extraGroups = [ "docker" "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
+    extraGroups = [ "docker" "lp" "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
   };
 
   # Allow unfree packages
@@ -87,7 +93,10 @@ let sshPorts = [ 51658 ]; in
     inetutils
     languagetool
     neovim
+    p7zip
     pass
+    python3
+    python311Packages.pytorchWithoutCuda
     qemu
     swayidle
     ubridge
@@ -132,6 +141,8 @@ let sshPorts = [ 51658 ]; in
       nssmdns4 = true;
       openFirewall = true;
     };
+
+    blueman.enable = true;
 
     #borgbackup.jobs.avery-home = {
     #  paths = "/home/avery";
