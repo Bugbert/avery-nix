@@ -14,7 +14,6 @@
     blender
     bluetuith
     btop
-    ciscoPacketTracer8
     dolphin-emu
     firefox
     gns3-gui
@@ -22,11 +21,9 @@
     grim
     krita
     libreoffice
-    logseq
     mpv
     musescore
     nanotts
-    obsidian
     octaveFull
     pamixer
     prismlauncher
@@ -39,7 +36,6 @@
     wayvnc
     wev
     wl-clipboard
-    zettlr
     zoom-us
   ];
 
