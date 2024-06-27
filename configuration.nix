@@ -96,7 +96,6 @@ let sshPorts = [ 51658 ]; in
     p7zip
     pass
     python3
-    python311Packages.pytorchWithoutCuda
     qemu
     swayidle
     ubridge

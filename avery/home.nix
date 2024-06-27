@@ -28,6 +28,7 @@
     nanotts
     obsidian
     octaveFull
+    pamixer
     prismlauncher
     qbittorrent
     slurp
