@@ -76,10 +76,19 @@ let sshPorts = [ 51658 ]; in
     isNormalUser = true;
     description = "Avery";
     extraGroups = [ "docker" "lp" "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  environment.sessionVariables = rec {
+    XDG_BIN_HOME = "$HOME/.local/bin";
+
+    PATH = [
+      "${XDG_BIN_HOME}"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -121,6 +130,7 @@ let sshPorts = [ 51658 ]; in
     river.enable = true;
     steam.enable = true;
     wireshark.enable = true;
+    zsh.enable = true;
   };
 
   security = {
@@ -151,10 +161,10 @@ let sshPorts = [ 51658 ]; in
     #  startAt = "daily";
     #};
 
-    greetd = {
-      enable = true;
-      settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c river";
-    };
+    #greetd = {
+    #  enable = true;
+    #  settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -rc river";
+    #};
 
     languagetool.enable = true;
 

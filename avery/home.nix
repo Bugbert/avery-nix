@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 
+let pinentryPkg = pkgs.pinentry-bemenu; in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -26,8 +27,10 @@
     nanotts
     octaveFull
     pamixer
+    pinentryPkg
     prismlauncher
     qbittorrent
+    reaper
     slurp
     swww
     tenacity
@@ -47,15 +50,39 @@
       extraConfig.init.defaultBranch = "main"; 
     };
 
+    gpg = {
+      enable = true;
+    };
+
     home-manager.enable = true;
+
+    rbw.settings = {
+      pinentry = pinentryPkg;
+    };
+
+    zsh = {
+      enable = true;
+    };
   };
 
   services = {
     gpg-agent = {
       enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
+      pinentryPackage = pinentryPkg;
     };
+  };
+
+  systemd.user = {
+    sessionVariables = {
+      TEST = "test";
+      BEMENU_OPTS = "-ib --fn 'JetBrainsMono Nerd Font'";
+    };
+  };
+
+  wayland.windowManager.river = {
+    enable = true;
+    extraConfig = builtins.readFile ./river/init;
+    systemd.enable = true;
   };
 
   # This value determines the Home Manager release that your
