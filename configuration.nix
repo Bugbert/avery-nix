@@ -161,10 +161,10 @@ let sshPorts = [ 51658 ]; in
     #  startAt = "daily";
     #};
 
-    #greetd = {
-    #  enable = true;
-    #  settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -rc river";
-    #};
+    greetd = {
+      enable = true;
+      settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -rc river";
+    };
 
     languagetool.enable = true;
 

@@ -18,13 +18,11 @@ riverctl map normal Super Return spawn alacritty
 # Super+Q to close the focused view
 riverctl map normal Super Q close
 
-alacritty -e sh -c "env | grep BEM; sleep 5"
+#riverctl map normal Super Tab spawn "bemenu-run $BEMENU_OPTS -p run"
 
-riverctl map normal Super Tab spawn "bemenu-run $BEMENU_OPTS -p run"
-riverctl map normal Super G spawn "cd ~/Games/bin; sh '\$(ls | bemenu $BEMENU_OPTS --hp -p games)'"
-riverctl map normal Super V spawn 'cd ~/Videos; mpv "$(filepick ~/Videos/)" --input-ipc-server=~/.cache/mpv.sock'
-
-riverctl map normal None XF86AudioPlay spawn 'echo "cycle pause" | socat - UNIX-CLIENT:/home/avery/.cache/mpv.sock'
+# sed -E 's/^(.*?)\.gpg.*/\1/'
+#command="ls | bemenu $BEMENU_OPTS -p account"
+#riverctl map normal Super P spawn "pass -c \$($command)"
 
 riverctl map normal Super S spawn 'grim - | wl-copy'
 riverctl map normal Super+Shift S spawn 'slurp | grim -g - - | wl-copy'

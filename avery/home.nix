@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 
+let bemenuOpts = "-ib --hp 8 --fn \"JetBrainsMono Nerd Font\""; in
+let homeDir = "/home/avery"; in
 let pinentryPkg = pkgs.pinentry-bemenu; in
 {
   # Home Manager needs a bit of information about you and the
@@ -75,13 +77,20 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
   systemd.user = {
     sessionVariables = {
       TEST = "test";
-      BEMENU_OPTS = "-ib --fn 'JetBrainsMono Nerd Font'";
+      BEMENU_OPTS = bemenuOpts;
     };
   };
 
   wayland.windowManager.river = {
     enable = true;
     extraConfig = builtins.readFile ./river/init;
+    settings = {
+      map.normal = {
+        "Super Tab" = "spawn 'bemenu-run ${bemenuOpts} -p run'";
+	"Super P" = "spawn 'pass -c $(ls ~/.password-store | sed -E \"s/^(.*?)\\.gpg.*/\\1/\" | " +
+	            "bemenu ${bemenuOpts} -p account)'";
+      };
+    };
     systemd.enable = true;
   };
 
