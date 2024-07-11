@@ -88,7 +88,8 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
       map.normal = {
         "Super Tab" = "spawn 'bemenu-run ${bemenuOpts} -p run'";
 	"Super P" = "spawn 'pass -c $(ls ~/.password-store | sed -E \"s/^(.*?)\\.gpg.*/\\1/\" | " +
-	            "bemenu ${bemenuOpts} -p account)'";
+	            "bemenu ${bemenuOpts} -p account) && true | bemenu ${bemenuOpts} -p Success " +
+		    "|| true | bemenu ${bemenuOpts} -p Failure'";
       };
     };
     systemd.enable = true;
