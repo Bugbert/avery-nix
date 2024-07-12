@@ -19,7 +19,6 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     btop
     dolphin-emu
     firefox
-    gns3-gui
     godot_4
     grim
     krita
