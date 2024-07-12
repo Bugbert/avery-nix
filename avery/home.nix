@@ -32,6 +32,7 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     pinentryPkg
     prismlauncher
     qbittorrent
+    r2modman
     reaper
     slurp
     swww
