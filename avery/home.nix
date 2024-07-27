@@ -21,6 +21,7 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     firefox
     godot_4
     grim
+    hugo
     krita
     libreoffice
     mpv
@@ -40,6 +41,9 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     waybar
     wayvnc
     wev
+#    wineWowPackages.staging
+    wineWowPackages.waylandFull
+    winetricks
     wl-clipboard
     zoom-us
   ];
