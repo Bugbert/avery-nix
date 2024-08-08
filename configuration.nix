@@ -104,6 +104,7 @@ let sshPorts = [ 51658 ]; in
     neovim
     p7zip
     pass
+    pv
     python3
     qemu
     swayidle
@@ -127,6 +128,8 @@ let sshPorts = [ 51658 ]; in
   xdg.portal.wlr.enable = true;
 
   programs = {
+    java.enable = true;
+    nix-ld.enable = true;
     river.enable = true;
     steam.enable = true;
     wireshark.enable = true;

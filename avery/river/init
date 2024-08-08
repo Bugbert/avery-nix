@@ -20,9 +20,7 @@ riverctl map normal Super Q close
 
 #riverctl map normal Super Tab spawn "bemenu-run $BEMENU_OPTS -p run"
 
-# sed -E 's/^(.*?)\.gpg.*/\1/'
 #command="ls | bemenu $BEMENU_OPTS -p account"
-#riverctl map normal Super P spawn "pass -c \$($command)"
 
 riverctl map normal Super S spawn 'grim - | wl-copy'
 riverctl map normal Super+Shift S spawn 'slurp | grim -g - - | wl-copy'
@@ -195,9 +193,10 @@ pkill waybar
 waybar &
 
 pgrep swww-daemon || swww-daemon &
-sh -c "sleep 0.5; swww img $(find ~/Pictures/Wallpaper/ -type f | shuf -n 1)" &
+sh -c 'sleep 0.5; swww img $(find ~/Pictures/Wallpaper/ -type f | shuf -n 1)' &
 
 pkill swayidle
 swayidle \
 	timeout 600 "wlr-randr --output $primary_display --off" resume "wlr-randr --output $primary_display --on" \
 	timeout 1800 "systemctl suspend; wlr-randr --output $primary_display --on" &
+

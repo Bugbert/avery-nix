@@ -24,6 +24,7 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     hugo
     krita
     libreoffice
+    linuxsampler
     mpv
     musescore
     nanotts
@@ -32,12 +33,14 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     pinentryPkg
     prismlauncher
     qbittorrent
+    qsampler
     r2modman
     reaper
     slurp
     swww
     tenacity
     thunderbird
+    ventoy
     waybar
     wayvnc
     wev
@@ -68,6 +71,11 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
 
     zsh = {
       enable = true;
+      sessionVariables = {
+      };
+      shellAliases = {
+        rb = "sudo nixos-rebuild switch --flake .";
+      };
     };
   };
 
@@ -90,10 +98,9 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     extraConfig = builtins.readFile ./river/init;
     settings = {
       map.normal = {
-        "Super Tab" = "spawn 'bemenu-run ${bemenuOpts} -p run'";
+        "Super Tab" = "spawn 'zsh -c \"bemenu-run ${bemenuOpts} -p run\"'";
 	"Super P" = "spawn 'pass -c $(ls ~/.password-store | sed -E \"s/^(.*?)\\.gpg.*/\\1/\" | " +
-	            "bemenu ${bemenuOpts} -p account) && true | bemenu ${bemenuOpts} -p Success " +
-		    "|| true | bemenu ${bemenuOpts} -p Failure'";
+	            "bemenu ${bemenuOpts} -p account) || true | bemenu ${bemenuOpts} -p Failure'";
       };
     };
     systemd.enable = true;
