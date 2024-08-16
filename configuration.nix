@@ -4,6 +4,7 @@
 
 { config, pkgs, ... }:
 
+let blockedDomains = [ "www.youtube.com" ]; in
 let sshPorts = [ 51658 ]; in
 {
   imports =
@@ -19,9 +20,12 @@ let sshPorts = [ 51658 ]; in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    rtl-sdr.enable = true;
   };
 
   networking.hostName = "avery-nix"; # Define your hostname.
@@ -38,6 +42,10 @@ let sshPorts = [ 51658 ]; in
       interface = "eno1";
     };
     dhcpcd.enable = false;
+    hosts = {
+      "::" = blockedDomains;
+      "0.0.0.0" = blockedDomains;
+    };
     interfaces.eno1 = {
       ipv4.addresses = [{
         address = "192.168.1.4";
@@ -75,7 +83,7 @@ let sshPorts = [ 51658 ]; in
   users.users.avery = {
     isNormalUser = true;
     description = "Avery";
-    extraGroups = [ "docker" "lp" "networkmanager" "ubridge" "video" "wheel" "wireshark" ];
+    extraGroups = [ "docker" "lp" "networkmanager" "plugdev" "rtlsdr" "ubridge" "video" "wheel" "wireshark" ];
     shell = pkgs.zsh;
   };
 
@@ -101,12 +109,14 @@ let sshPorts = [ 51658 ]; in
     greetd.greetd
     inetutils
     languagetool
+    librtlsdr
     neovim
     p7zip
     pass
     pv
     python3
     qemu
+    rtl-sdr
     swayidle
     ubridge
     uftpd
@@ -163,6 +173,8 @@ let sshPorts = [ 51658 ]; in
     #  compression = "auto,zstd";
     #  startAt = "daily";
     #};
+
+    gitwatch = import ./gitwatchers.nix;
 
     greetd = {
       enable = true;

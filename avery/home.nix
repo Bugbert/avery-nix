@@ -1,13 +1,29 @@
 { config, pkgs, ... }:
 
 let bemenuOpts = "-ib --hp 8 --fn \"JetBrainsMono Nerd Font\""; in
-let homeDir = "/home/avery"; in
+let uName = "avery"; in
+let homeDir = "/home/${uName}"; in
 let pinentryPkg = pkgs.pinentry-bemenu; in
+
+let nvimPlugs = with pkgs.vimPlugins; [
+  nvim-treesitter
+  wrapping-nvim
+  {
+    plugin = vimwiki;
+    config = "let g:vimwiki_list = " + 
+	     "[{'path': '~/git/school/', 'syntax': 'markdown', 'ext': 'md'}]";
+  }
+]; in
+
+let tsLangs = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+  markdown
+]; in
+
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "avery";
-  home.homeDirectory = "/home/avery";
+  home.username = uName;
+  home.homeDirectory = homeDir;
 
   home.packages = with pkgs; [
     alacritty
@@ -21,6 +37,7 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     firefox
     godot_4
     grim
+    gqrx
     hugo
     krita
     libreoffice
@@ -48,6 +65,7 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     wineWowPackages.waylandFull
     winetricks
     wl-clipboard
+    zettlr
     zoom-us
   ];
 
@@ -64,6 +82,11 @@ let pinentryPkg = pkgs.pinentry-bemenu; in
     };
 
     home-manager.enable = true;
+
+    neovim = {
+      enable = true;
+      plugins = nvimPlugs ++ tsLangs;
+    };
 
     rbw.settings = {
       pinentry = pinentryPkg;
