@@ -181,6 +181,8 @@ let sshPorts = [ 51658 ]; in
       settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -rc river";
     };
 
+    jitterentropy-rngd.enable = true;
+
     languagetool.enable = true;
 
     openssh = {
