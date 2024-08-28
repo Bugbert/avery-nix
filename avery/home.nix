@@ -39,6 +39,7 @@ let tsLangs = with pkgs.vimPlugins.nvim-treesitter-parsers; [
     grim
     gqrx
     hugo
+    inkscape
     krita
     libreoffice
     linuxsampler
@@ -47,6 +48,7 @@ let tsLangs = with pkgs.vimPlugins.nvim-treesitter-parsers; [
     nanotts
     octaveFull
     pamixer
+    pandoc
     pinentryPkg
     prismlauncher
     qbittorrent

@@ -179,8 +179,8 @@ pgrep thunderbird || thunderbird &
 riverctl rule-add -title "*qBittorrent*" tags $((1 << 7))
 pgrep qbittorrent || qbittorrent &
 
-riverctl rule-add -title "*Firefox*" tags $((1 << 0))
-pgrep firefox || firefox &
+#riverctl rule-add -title "*Firefox*" tags $((1 << 0))
+#pgrep firefox || firefox &
 
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
