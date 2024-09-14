@@ -33,6 +33,7 @@ let tsLangs = with pkgs.vimPlugins.nvim-treesitter-parsers; [
     blender
     bluetuith
     btop
+    chromium
     dolphin-emu
     firefox
     godot_4

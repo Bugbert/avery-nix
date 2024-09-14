@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 
-let blockedDomains = [ "www.youtube.com" ]; in
+let blockedDomains = [ ]; in # "www.youtube.com" ]; in
 let sshPorts = [ 51658 ]; in
 {
   imports =
@@ -180,6 +180,8 @@ let sshPorts = [ 51658 ]; in
       enable = true;
       settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -rc river";
     };
+
+    i2p.enable = true;
 
     jitterentropy-rngd.enable = true;
 

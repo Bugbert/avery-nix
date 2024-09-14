@@ -190,8 +190,8 @@ rivertile -view-padding 3 -outer-padding 3 &
 pkill waybar
 waybar &
 
-pgrep swww-daemon || swww-daemon &
-sh -c 'sleep 0.5; swww img $(find ~/Pictures/Wallpaper/ -type f | shuf -n 1)' &
+pgrep swww-daemon || swww-daemon --no-cache &
+sh -c 'sleep 1; swww img $(find ~/Pictures/Wallpaper/ -type f | shuf -n 1)' &
 
 pkill swayidle
 swayidle \
